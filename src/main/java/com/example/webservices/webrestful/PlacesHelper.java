@@ -16,15 +16,13 @@ public class PlacesHelper {
         search = search.replaceAll("\\s+","");
         String uri = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + search + "%20Dublin&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&sensor=false&key=" + APIKY;
         StringBuffer response = sendRequest(uri);
-        String img = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=";
-        String endImage = "&sensor=false&key=" + APIKY;
         SortResponse sortResponse = new SortResponse(response).invoke();
         String name = sortResponse.getName();
         String address = sortResponse.getAddress();
         String rating = sortResponse.getRating();
         String photo = sortResponse.getPhoto();
         ArrayList<String> business = new ArrayList<>();
-        img = img + photo + endImage;
+        String img = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&sensor=false&key=" + APIKY;
         business.add(0,name);
         business.add(1, address);
         business.add(2, rating);
