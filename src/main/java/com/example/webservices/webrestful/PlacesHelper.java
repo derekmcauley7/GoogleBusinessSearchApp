@@ -10,23 +10,18 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class PlacesHelper {
-    public static ArrayList<String> getPlaces(String search){
+    public static ArrayList<String> getPlaces(String search) {
 
         final String APIKY = "";
         search = search.replaceAll("\\s+","");
         String uri = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + search + "%20Dublin&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&sensor=false&key=" + APIKY;
         StringBuffer response = sendRequest(uri);
         SortResponse sortResponse = new SortResponse(response).invoke();
-        String name = sortResponse.getName();
-        String address = sortResponse.getAddress();
-        String rating = sortResponse.getRating();
-        String photo = sortResponse.getPhoto();
         ArrayList<String> business = new ArrayList<>();
-        String img = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&sensor=false&key=" + APIKY;
-        business.add(0,name);
-        business.add(1, address);
-        business.add(2, rating);
-        business.add(3, img);
+        business.add(0, sortResponse.getName());
+        business.add(1, sortResponse.getAddress());
+        business.add(2, sortResponse.getRating());
+        business.add(3, getImgURL(APIKY, sortResponse));
         return business;
     }
 
@@ -35,13 +30,10 @@ public class PlacesHelper {
         try {
             URL obj = new URL(uri);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            // optional default is GET
+
             con.setRequestMethod("GET");
 
-            //add request header
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
-
-            int responseCode = con.getResponseCode();
 
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
@@ -56,6 +48,11 @@ public class PlacesHelper {
             e.printStackTrace();
         }
         return response;
+    }
+
+    private static String getImgURL(String APIKY, SortResponse sortResponse) {
+        String photo = sortResponse.getPhoto();
+        return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo + "&sensor=false&key=" + APIKY;
     }
 
     private static class SortResponse {
