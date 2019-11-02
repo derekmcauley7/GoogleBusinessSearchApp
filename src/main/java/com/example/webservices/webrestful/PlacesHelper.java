@@ -12,16 +12,25 @@ import java.util.ArrayList;
 public class PlacesHelper {
     public static ArrayList<String> getPlaces(String search) {
 
+        SortResponse sortResponse = null;
+        StringBuffer response = null;
         final String APIKY = "";
-        search = search.replaceAll("\\s+","");
+        search = search.replaceAll("\\s+", "");
         String uri = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + search + "%20Dublin&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&sensor=false&key=" + APIKY;
-        StringBuffer response = sendRequest(uri);
-        SortResponse sortResponse = new SortResponse(response).invoke();
+        try {
+            response = sendRequest(uri);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+        sortResponse = new SortResponse(response).invoke();
         ArrayList<String> business = new ArrayList<>();
-        business.add(0, sortResponse.getName());
-        business.add(1, sortResponse.getAddress());
-        business.add(2, sortResponse.getRating());
-        business.add(3, getImgURL(APIKY, sortResponse));
+        business.add(0, sortResponse.getId());
+        business.add(1, sortResponse.getName());
+        business.add(2, sortResponse.getAddress());
+        business.add(3, sortResponse.getRating());
+        business.add(4, getImgURL(APIKY, sortResponse));
+        System.out.println(uri);
         return business;
     }
 
@@ -57,6 +66,7 @@ public class PlacesHelper {
 
     private static class SortResponse {
         private StringBuffer response;
+        String id;
         private String name;
         private String address;
         private String rating;
@@ -64,6 +74,10 @@ public class PlacesHelper {
 
         public SortResponse(StringBuffer response) {
             this.response = response;
+        }
+
+        public String getId() {
+            return id;
         }
 
         public String getName() {
@@ -86,11 +100,21 @@ public class PlacesHelper {
             try {
                 JSONObject jsonObj = new JSONObject(response.toString());
                 JSONArray array = jsonObj.getJSONArray("candidates");
-                name = array.getJSONObject(0).get("name").toString();
-                address = array.getJSONObject(0).get("formatted_address").toString();
-                rating = array.getJSONObject(0).get("rating").toString();
-                JSONObject photoInfo = array.getJSONObject(0).getJSONArray("photos").getJSONObject(0);
-                photo = photoInfo.getString("photo_reference");
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject jsonObject1 = array.getJSONObject(i);
+                    JSONObject geometry = jsonObject1.optJSONObject("geometry");
+                    JSONObject location = geometry.optJSONObject("location");
+                    String lng = location.optString("lng");
+                    String lat = location.optString("lat");
+                    Double sumOfGeometry = Double.valueOf(lat) + Double.valueOf(lng);
+                    String stringValueOfGeometry = Double.toString(sumOfGeometry);
+                    id = stringValueOfGeometry.replace(".", "");
+                    name = array.getJSONObject(0).get("name").toString();
+                    address = array.getJSONObject(0).get("formatted_address").toString();
+                    rating = array.getJSONObject(0).get("rating").toString();
+                    JSONObject photoInfo = array.getJSONObject(0).getJSONArray("photos").getJSONObject(0);
+                    photo = photoInfo.getString("photo_reference");
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
