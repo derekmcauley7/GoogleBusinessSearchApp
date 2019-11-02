@@ -14,10 +14,17 @@ public class PlaceController {
     @CrossOrigin
     @GetMapping(path = "/place" )
     public PlaceBean helloWordBean(@RequestParam("search") String search){
-
+        PlaceBean place;
         ArrayList googleBusinessInfo = PlacesHelper.getPlaces(search);
-        return new PlaceBean(1, googleBusinessInfo.get(0).toString(), googleBusinessInfo.get(1).toString(),
-                googleBusinessInfo.get(2).toString(), googleBusinessInfo.get(3).toString());
+        try {
+            place = new PlaceBean(googleBusinessInfo.get(0).toString(), googleBusinessInfo.get(1).toString(),
+                    googleBusinessInfo.get(2).toString(), googleBusinessInfo.get(3).toString(), googleBusinessInfo.get(4).toString());
+            return place;
+        } catch (Exception e) {
+            place = new PlaceBean("0", "No Listing Found",
+                    "", "","");
+            return place;
+        }
     }
 
 }

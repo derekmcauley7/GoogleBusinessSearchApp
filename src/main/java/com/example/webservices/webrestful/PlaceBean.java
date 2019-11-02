@@ -1,17 +1,13 @@
 package com.example.webservices.webrestful;
 
 public class PlaceBean {
-    private int id;
+    private final String id;
     private final String name;
     private final String address;
     private final String rating;
     private final String img;
 
-    public int getId() { return id; }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getId() { return id; }
 
     public String getName() {
         return name;
@@ -38,7 +34,7 @@ public class PlaceBean {
                 '}';
     }
 
-    public PlaceBean(int id, String name, String address, String rating, String img) {
+    public PlaceBean(String id, String name, String address, String rating, String img) {
         this.id = id;
         this.name = name;
         this.address = address;
