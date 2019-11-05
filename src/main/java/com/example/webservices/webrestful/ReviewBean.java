@@ -2,37 +2,50 @@ package com.example.webservices.webrestful;
 
 public class ReviewBean {
     private final String id;
+    private final String placesId;
+    private final String overAllRating;
     private final String suitableRamp;
+    private final String toilet;
     private final String cleanliness;
     private final String areAllAreasAccessible;
     private final String easeOfMovement;
     private final String seatingSuitability;
-    private final Boolean lift;
-    private final Boolean stairs;
-    private final Boolean fullWheelchairAccessibleManual;
-    private final Boolean fullWheelchairAccessibleElectric;
-    private final Boolean keyRequiredFromStaff;
-    private final Boolean serviceCounter;
-    private final Boolean tableService;
+    private final String lift;
+    private final String stairs;
+    private final String fullWheelchairAccessibleManual;
+    private final String fullWheelchairAccessibleElectric;
+    private final String keyRequiredFromStaff;
+    private final String serviceCounter;
+    private final String tableService;
 
     public String getId() {
         return id;
     }
 
-    public String getsuitableRamp() {
-
-        return suitableRamp;
+    public String gettoilet() {
+        return toilet;
     }
 
-    private String getAreAllAreasAccessible() {
+    public String getplacesId() {
+        return placesId;
+    }
+
+    public String getsuitableRamp() {
+        return suitableRamp;
+    }
+    public String getoverAllRating() {
+        return overAllRating;
+    }
+
+    public String getareAllAreasAccessible() {
         return areAllAreasAccessible;
     }
 
-    private String getEaseOfMovement() {
+    public String getEaseOfMovement() {
         return easeOfMovement;
     }
 
-    private String getSeatingSuitability() {
+    public String getSeatingSuitability() {
         return seatingSuitability;
     }
 
@@ -40,59 +53,63 @@ public class ReviewBean {
         return cleanliness;
     }
 
-    private Boolean getServiceCounter() {
+    public String getServiceCounter() {
         return serviceCounter;
     }
 
-    private Boolean getTableService() {
+    public String getTableService() {
         return tableService;
     }
 
-    public Boolean getLift() {
+    public String getLift() {
 
         return lift;
     }
 
-    public Boolean getStairs() {
+    public String getStairs() {
 
         return stairs;
     }
 
-    public Boolean getfullWheelchairAccessibleManual() {
+    public String createtOverAllRating() {
+        Double totalRating = new Double(0);
+        Double totalItems = new Double(5);
+        Double suitableRamp = new Double(this.suitableRamp);
+        Double cleanliness = new Double(this.cleanliness);
+        Double areAllAreasAccessible = new Double(this.areAllAreasAccessible);
+        Double easeOfMovement = new Double(this.easeOfMovement);
+        Double seatingSuitability = new Double(this.seatingSuitability);
+        totalRating = totalRating + suitableRamp + cleanliness + areAllAreasAccessible + easeOfMovement + seatingSuitability;
+        CalculateRatingForQuestions calculateRatingForQuestions = new CalculateRatingForQuestions(totalRating, totalItems).invoke();
+        totalRating = calculateRatingForQuestions.getTotalRating();
+        totalItems = calculateRatingForQuestions.getTotalItems();
+
+        totalRating = totalRating /totalItems;
+        return totalRating.toString();
+    }
+
+    public String getfullWheelchairAccessibleManual() {
         return fullWheelchairAccessibleManual;
     }
 
-    public Boolean getfullWheelchairAccessibleElectric() {
+    public String getfullWheelchairAccessibleElectric() {
         return fullWheelchairAccessibleElectric;
     }
 
-    private Boolean getKeyRequiredFromStaff() {
+    public String getKeyRequiredFromStaff() {
         return keyRequiredFromStaff;
     }
 
-    @Override
-    public String toString() {
-        return "Review  Bean{" +
-                "id=" + id +
-                ", suitableRamp='" + suitableRamp + '\'' +
-                ", lift='" + lift + '\'' +
-                ", stairs='" + stairs + '\'' +
-                ", fullWheelchairAccessibleManual='" + fullWheelchairAccessibleManual + '\'' +
-                ", fullWheelchairAccessibleElectric='" + fullWheelchairAccessibleElectric + '\'' +
-                ", cleanliness='" + cleanliness + '\'' +
-                ", keyRequiredFromStaff='" + keyRequiredFromStaff + '\'' +
-                ", areAllAreasAccessible='" + areAllAreasAccessible + '\'' +
-                ", easeOfMovement='" + easeOfMovement + '\'' +
-                ", SeatingSuitability='" + seatingSuitability + '\'' +
-                ", serviceCounter='" + serviceCounter + '\'' +
-                ", tableService='" + tableService + '\'' +
-                '}';
-    }
 
-    public ReviewBean(String id, String suitableRamp, Boolean lift, Boolean stairs, Boolean fullWheelchairAccessibleManual, Boolean fullWheelchairAccessibleElectric, String cleanliness,
-                      Boolean keyRequiredFromStaff, String areAllAreasAccessible, String easeOfMovement, String seatingSuitability, Boolean serviceCounter, Boolean tableService) {
+    public ReviewBean(String id, String placesId, String suitableRamp, String toilet, String lift,
+                      String stairs, String fullWheelchairAccessibleManual,
+                      String fullWheelchairAccessibleElectric, String cleanliness,
+                      String keyRequiredFromStaff, String areAllAreasAccessible,
+                      String easeOfMovement, String seatingSuitability, String serviceCounter, String tableService) {
         this.id = id;
+        this.placesId = placesId;
         this.suitableRamp = suitableRamp;
+        this.toilet = toilet;
         this.lift = lift;
         this.stairs = stairs;
         this.fullWheelchairAccessibleManual = fullWheelchairAccessibleManual;
@@ -104,5 +121,84 @@ public class ReviewBean {
         this.seatingSuitability = seatingSuitability;
         this.serviceCounter = serviceCounter;
         this.tableService = tableService;
+        this.overAllRating = createtOverAllRating();
+    }
+
+    private class CalculateRatingForQuestions {
+        private Double totalRating;
+        private Double totalItems;
+
+        public CalculateRatingForQuestions(Double totalRating, Double totalItems) {
+            this.totalRating = totalRating;
+            this.totalItems = totalItems;
+        }
+
+        public Double getTotalRating() {
+            return totalRating;
+        }
+
+        public Double getTotalItems() {
+            return totalItems;
+        }
+
+        public CalculateRatingForQuestions invoke() {
+            if(ReviewBean.this.toilet == "yes") {
+                totalRating = totalRating + 5;
+                totalItems = totalItems+1;
+            } else if (ReviewBean.this.toilet == "no") {
+                totalRating = totalRating - 25;
+                totalItems = totalItems+1;
+            }
+            if(ReviewBean.this.lift == "yes") {
+                totalRating = totalRating + 5;
+                totalItems = totalItems+1;
+            } else if (ReviewBean.this.lift == "no") {
+                totalRating = totalRating + 1;
+                totalItems = totalItems+1;
+            }
+            if(ReviewBean.this.stairs == "yes") {
+                totalRating = totalRating + 0;
+                totalItems = totalItems+1;
+            } else if (ReviewBean.this.stairs == "no") {
+                totalRating = totalRating + 5;
+                totalItems = totalItems+1;
+            }
+            if(ReviewBean.this.fullWheelchairAccessibleManual == "yes") {
+                totalRating = totalRating + 5;
+                totalItems = totalItems+1;
+            } else if (ReviewBean.this.fullWheelchairAccessibleManual == "no") {
+                totalRating = totalRating + 0;
+                totalItems = totalItems+1;
+            }
+            if(ReviewBean.this.fullWheelchairAccessibleElectric == "yes") {
+                totalRating = totalRating + 5;
+                totalItems = totalItems+1;
+            } else if (ReviewBean.this.fullWheelchairAccessibleElectric == "no") {
+                totalRating = totalRating + 0;
+                totalItems = totalItems+1;
+            }
+            if(ReviewBean.this.keyRequiredFromStaff == "yes") {
+                totalRating = totalRating + 5;
+                totalItems = totalItems+1;
+            } else if (ReviewBean.this.keyRequiredFromStaff == "no") {
+                totalRating = totalRating + 4;
+                totalItems = totalItems+1;
+            }
+            if(ReviewBean.this.serviceCounter == "yes") {
+                totalRating = totalRating + 5;
+                totalItems = totalItems+1;
+            } else if (ReviewBean.this.serviceCounter == "no") {
+                totalRating = totalRating + 2;
+                totalItems = totalItems+1;
+            }
+            if(ReviewBean.this.tableService == "yes") {
+                totalRating = totalRating + 5;
+                totalItems = totalItems+1;
+            } else if (ReviewBean.this.tableService == "no") {
+                totalRating = totalRating + 3;
+                totalItems = totalItems+1;
+            }
+            return this;
+        }
     }
 }

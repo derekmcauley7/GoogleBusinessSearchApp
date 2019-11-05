@@ -106,9 +106,8 @@ public class PlacesHelper {
                     JSONObject location = geometry.optJSONObject("location");
                     String lng = location.optString("lng");
                     String lat = location.optString("lat");
-                    Double sumOfGeometry = Double.valueOf(lat) + Double.valueOf(lng);
-                    String stringValueOfGeometry = Double.toString(sumOfGeometry);
-                    id = stringValueOfGeometry.replace(".", "");
+                    String stringValueOfGeometry = lat + lng;
+                    id = stringValueOfGeometry.replace(".", "").replace("-", "");
                     name = array.getJSONObject(0).get("name").toString();
                     address = array.getJSONObject(0).get("formatted_address").toString();
                     rating = array.getJSONObject(0).get("rating").toString();

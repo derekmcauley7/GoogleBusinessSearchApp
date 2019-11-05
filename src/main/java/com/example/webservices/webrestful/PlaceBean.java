@@ -25,7 +25,7 @@ public class PlaceBean {
 
     @Override
     public String toString() {
-        return "Place       Bean{" +
+        return "Place       Bean [ {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
