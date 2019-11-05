@@ -1,5 +1,6 @@
 package com.example.webservices.webrestful;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,13 +10,15 @@ import java.util.ArrayList;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
+
 public class ReviewController {
+
 
     @CrossOrigin
     @GetMapping(path = "/review/{id}")
         public ReviewBean helloWordBean(@PathVariable("id") String id){
-        System.out.println(id);
-        return new ReviewBean(id,"5",false,false,false,false,"5",false,"5","5","5",false,false);
+        ReviewBean reviewBean = new ReviewBean(id,"4","5","no","yes","no","yes","yes","0","no","5","5","5","yes","ys");
+        return reviewBean;
     }
 
 }
