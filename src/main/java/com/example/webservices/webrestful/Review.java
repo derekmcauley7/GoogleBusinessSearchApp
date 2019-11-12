@@ -10,8 +10,10 @@ import javax.persistence.Id;
 public class Review {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private double overAllRating;
+    private String userId;
     private String suitableRamp;
     private String toilet;
     private String cleanliness;
@@ -29,12 +31,12 @@ public class Review {
 
     public Review() {  }
 
-    public Review(String id, String placesId, String overAllRating, String suitableRamp, String toilet, String cleanliness,
+    public Review(String placesId, String overAllRating, String userId, String suitableRamp, String toilet, String cleanliness,
                   String areAllAreasAccessible, String easeOfMovement, String seatingSuitability, String lift, String stairs,
                   String fullWheelchairAccessibleManual, String fullWheelchairAccessibleElectric, String keyRequiredFromStaff,
                   String serviceCounter, String tableService, String content) {
-        this.setId(id);
         this.setPlacesId(placesId);
+        this.setUserId(userId);
         this.setSuitableRamp(suitableRamp);
         this.setToilet(toilet);
         this.setCleanliness(cleanliness);
@@ -54,11 +56,19 @@ public class Review {
     }
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 

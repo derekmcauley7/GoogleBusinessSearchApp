@@ -1,7 +1,6 @@
 package com.example.webservices.webrestful;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,8 +35,8 @@ public class ReviewController {
 
     @PostMapping("/review")
     public Review create(@RequestBody Map<String, String> body) {
-        String id = body.get("id");
         String placesId = body.get("placesId");
+        String userId = body.get("userId");
         String overAllRating = body.get("overAllRating");
         String suitableRamp = body.get("suitableRamp");
         String toilet = body.get("toilet");
@@ -54,7 +53,7 @@ public class ReviewController {
         String tableService = body.get("tableService");
         String content = body.get("content");
 
-        return reviewRepository.save(new Review(id, placesId, overAllRating, suitableRamp, toilet, cleanliness, areAllAreasAccessible, easeOfMovement,
+        return reviewRepository.save(new Review(placesId, overAllRating, userId, suitableRamp, toilet, cleanliness, areAllAreasAccessible, easeOfMovement,
                 seatingSuitability, lift, stairs, fullWheelchairAccessibleManual, fullWheelchairAccessibleElectric, keyRequiredFromStaff, serviceCounter,
                 tableService, content));
     }

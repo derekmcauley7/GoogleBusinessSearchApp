@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, String> {
 
-        // custom query to search to review post by title or content
+        // custom query to search to review post by placeId
         List<Review> findByplacesIdContainingOrContentContaining(String placesId, String placesIdAgain);
 
     }
