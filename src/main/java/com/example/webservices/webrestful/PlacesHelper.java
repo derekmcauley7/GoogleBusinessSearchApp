@@ -10,13 +10,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class PlacesHelper {
-    public static ArrayList<String> getPlaces(String search) {
+    public static ArrayList<String> getPlaces(String search, String county) {
 
         SortResponse sortResponse = null;
         StringBuffer response = null;
         final String APIKY = "";
         search = search.replaceAll("\\s+", "");
-        String uri = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + search + "%20Dublin&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&sensor=false&key=" + APIKY;
+        String uri = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + search + "%20" + county +"&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&sensor=false&key=" + APIKY;
         try {
             response = sendRequest(uri);
         } catch (Exception e) {

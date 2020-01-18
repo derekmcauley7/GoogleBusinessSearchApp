@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PlaceRepository extends JpaRepository<Place, String> {
+public interface  PlaceRepository extends JpaRepository<Place, String> {
 
     List<Place> findBynameContaining(String name, String nameAgain);
 

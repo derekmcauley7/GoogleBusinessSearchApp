@@ -11,4 +11,7 @@ public interface ReviewRepository extends JpaRepository<Review, String> {
         // custom query to search to review post by placeId
         List<Review> findByplacesIdContainingOrContentContaining(String placesId, String placesIdAgain);
 
+    // custom query to search to review post by placeId
+    List<Review> findByplacesId(String placesId);
+
     }

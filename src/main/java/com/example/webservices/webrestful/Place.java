@@ -24,7 +24,7 @@ public class Place {
         this.setName(name);
         this.setRating(rating);
         this.setAddress(address);
-        this.setImage(image);
+            this.setImage(image);
     }
 
     public String getId() {
