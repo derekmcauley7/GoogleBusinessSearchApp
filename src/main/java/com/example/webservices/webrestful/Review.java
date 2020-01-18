@@ -1,6 +1,9 @@
 package com.example.webservices.webrestful;
 
 
+import org.springframework.web.bind.annotation.Mapping;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +17,8 @@ public class Review {
     private int id;
     private double overAllRating;
     private String userId;
-    private String suitableRamp;
+    @Column(name="suitableRamp")
+    private String entrance;
     private String toilet;
     private String cleanliness;
     private String areAllAreasAccessible;
@@ -31,13 +35,13 @@ public class Review {
 
     public Review() {  }
 
-    public Review(String placesId, String overAllRating, String userId, String suitableRamp, String toilet, String cleanliness,
+    public Review(String placesId, String overAllRating, String userId, String entrance, String toilet, String cleanliness,
                   String areAllAreasAccessible, String easeOfMovement, String seatingSuitability, String lift, String stairs,
                   String fullWheelchairAccessibleManual, String fullWheelchairAccessibleElectric, String keyRequiredFromStaff,
                   String serviceCounter, String tableService, String content) {
         this.setPlacesId(placesId);
         this.setUserId(userId);
-        this.setSuitableRamp(suitableRamp);
+        this.setEntrance(entrance);
         this.setToilet(toilet);
         this.setCleanliness(cleanliness);
         this.setAreAllAreasAccessible(areAllAreasAccessible);
@@ -90,12 +94,12 @@ public class Review {
         this.overAllRating = overAllRating;
     }
 
-    public String getSuitableRamp() {
-        return suitableRamp;
+    public String getEntrance() {
+        return entrance;
     }
 
-    public void setSuitableRamp(String suitableRamp) {
-        this.suitableRamp = suitableRamp;
+    public void setEntrance(String suitableRamp) {
+        this.entrance = suitableRamp;
     }
 
     public String getToilet() {
@@ -214,12 +218,12 @@ public class Review {
     public String createtOverAllRating() {
         Double totalRating = new Double(0);
         Double totalItems = new Double(5);
-        Double suitableRamp = new Double(this.suitableRamp);
+        Double entrance = new Double(this.entrance);
         Double cleanliness = new Double(this.cleanliness);
         Double areAllAreasAccessible = new Double(this.areAllAreasAccessible);
         Double easeOfMovement = new Double(this.easeOfMovement);
         Double seatingSuitability = new Double(this.seatingSuitability);
-        totalRating = totalRating + suitableRamp + cleanliness + areAllAreasAccessible + easeOfMovement + seatingSuitability;
+        totalRating = totalRating + entrance + cleanliness + areAllAreasAccessible + easeOfMovement + seatingSuitability;
         Review.CalculateRatingForQuestions calculateRatingForQuestions = new Review.CalculateRatingForQuestions(totalRating, totalItems).invoke();
         totalRating = calculateRatingForQuestions.getTotalRating();
         totalItems = calculateRatingForQuestions.getTotalItems();

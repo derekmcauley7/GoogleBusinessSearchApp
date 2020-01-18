@@ -30,8 +30,8 @@ public class PlaceController {
     }
 
     @GetMapping(path = "/place" )
-    public Place create(@RequestParam("search") String search){
-        ArrayList googleBusinessInfo = PlacesHelper.getPlaces(search);
+    public Place create(@RequestParam("search") String search, @RequestParam("county") String county){
+        ArrayList googleBusinessInfo = PlacesHelper.getPlaces(search, county);
         try {
             String id = googleBusinessInfo.get(0).toString();
             String name = googleBusinessInfo.get(1).toString();
@@ -41,7 +41,7 @@ public class PlaceController {
             return placeRepository.save(new Place(id, name, rating, address, image));
         } catch (Exception e) {
             System.out.println(e);
-            return  null;
+            return  placeRepository.save(new Place("1", "No Place Found", "0", "", "https://onlinezebra.com/wp-content/uploads/2019/01/error-404-not-found.jpg"));
         }
     }
 
