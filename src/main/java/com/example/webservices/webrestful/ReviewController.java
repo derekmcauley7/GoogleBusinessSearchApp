@@ -43,7 +43,7 @@ public class ReviewController {
     public Review create(@RequestBody Map<String, String> body) {
         String placesId = body.get("placesId");
         String userId = body.get("userId");
-        String overAllRating = body.get("overAllRating");
+        String overAllRating = "0";
         String entrance = body.get("entrance");
         String toilet = body.get("toilet");
         String cleanliness = body.get("cleanliness");

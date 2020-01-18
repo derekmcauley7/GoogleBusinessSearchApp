@@ -250,59 +250,59 @@ public class Review {
         }
 
         public Review.CalculateRatingForQuestions invoke() {
-            if(Review.this.toilet == "yes") {
+            if(Review.this.toilet == "1") {
                 totalRating = totalRating + 5;
                 totalItems = totalItems+1;
-            } else if (Review.this.toilet == "no") {
+            } else if (Review.this.toilet == "0") {
                 totalRating = totalRating - 25;
                 totalItems = totalItems+1;
             }
-            if(Review.this.lift == "yes") {
+            if(Review.this.lift == "1") {
                 totalRating = totalRating + 5;
                 totalItems = totalItems+1;
-            } else if (Review.this.lift == "no") {
+            } else if (Review.this.lift == "0") {
                 totalRating = totalRating + 1;
                 totalItems = totalItems+1;
             }
-            if(Review.this.stairs == "yes") {
+            if(Review.this.stairs == "1") {
                 totalRating = totalRating + 0;
                 totalItems = totalItems+1;
-            } else if (Review.this.stairs == "no") {
+            } else if (Review.this.stairs == "0") {
                 totalRating = totalRating + 5;
                 totalItems = totalItems+1;
             }
-            if(Review.this.fullWheelchairAccessibleManual == "yes") {
+            if(Review.this.fullWheelchairAccessibleManual == "1") {
                 totalRating = totalRating + 5;
                 totalItems = totalItems+1;
-            } else if (Review.this.fullWheelchairAccessibleManual == "no") {
+            } else if (Review.this.fullWheelchairAccessibleManual == "0") {
                 totalRating = totalRating + 0;
                 totalItems = totalItems+1;
             }
-            if(Review.this.fullWheelchairAccessibleElectric == "yes") {
+            if(Review.this.fullWheelchairAccessibleElectric == "1") {
                 totalRating = totalRating + 5;
                 totalItems = totalItems+1;
-            } else if (Review.this.fullWheelchairAccessibleElectric == "no") {
+            } else if (Review.this.fullWheelchairAccessibleElectric == "0") {
                 totalRating = totalRating + 0;
                 totalItems = totalItems+1;
             }
-            if(Review.this.keyRequiredFromStaff == "yes") {
+            if(Review.this.keyRequiredFromStaff == "1") {
                 totalRating = totalRating + 5;
                 totalItems = totalItems+1;
-            } else if (Review.this.keyRequiredFromStaff == "no") {
+            } else if (Review.this.keyRequiredFromStaff == "0") {
                 totalRating = totalRating + 4;
                 totalItems = totalItems+1;
             }
-            if(Review.this.serviceCounter == "yes") {
+            if(Review.this.serviceCounter == "1") {
                 totalRating = totalRating + 5;
                 totalItems = totalItems+1;
-            } else if (Review.this.serviceCounter == "no") {
+            } else if (Review.this.serviceCounter == "0") {
                 totalRating = totalRating + 2;
                 totalItems = totalItems+1;
             }
-            if(Review.this.tableService == "yes") {
+            if(Review.this.tableService == "1") {
                 totalRating = totalRating + 5;
                 totalItems = totalItems+1;
-            } else if (Review.this.tableService == "no") {
+            } else if (Review.this.tableService == "0") {
                 totalRating = totalRating + 3;
                 totalItems = totalItems+1;
             }
