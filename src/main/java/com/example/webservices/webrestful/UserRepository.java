@@ -6,12 +6,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, String> {
+public interface UserRepository extends JpaRepository<User, String> {
+
 
     // custom query to search to review post by placeId
-    List<Review> findByplacesIdContainingOrContentContaining(String placesId, String placesIdAgain);
+    List<User> findByid(String id);
 
     // custom query to search to review post by placeId
-    List<Review> findByplacesId(String placesId);
+    List<User> findBynameContaining(String id, String idAgain);
 
-    }
+}

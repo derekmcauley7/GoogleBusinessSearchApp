@@ -20,7 +20,6 @@ public class PlacesHelper {
         try {
             response = sendRequest(uri);
         } catch (Exception e) {
-            System.out.println(e);
             return null;
         }
         sortResponse = new SortResponse(response).invoke();
@@ -30,7 +29,6 @@ public class PlacesHelper {
         business.add(2, sortResponse.getAddress());
         business.add(3, sortResponse.getRating());
         business.add(4, getImgURL(APIKY, sortResponse));
-        System.out.println(uri);
         return business;
     }
 

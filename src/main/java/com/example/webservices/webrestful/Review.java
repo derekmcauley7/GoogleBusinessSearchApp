@@ -15,7 +15,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private double overAllRating;
+        private double overAllRating;
     private String userId;
     @Column(name="suitableRamp")
     private String entrance;
