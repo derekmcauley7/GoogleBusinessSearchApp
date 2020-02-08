@@ -1,5 +1,6 @@
-package com.example.webservices.webrestful;
+package com.example.webservices.webrestful.repository;
 
+import com.example.webservices.webrestful.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

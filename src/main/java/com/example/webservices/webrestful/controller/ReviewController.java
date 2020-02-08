@@ -1,5 +1,7 @@
-package com.example.webservices.webrestful;
+package com.example.webservices.webrestful.controller;
 
+import com.example.webservices.webrestful.Review;
+import com.example.webservices.webrestful.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

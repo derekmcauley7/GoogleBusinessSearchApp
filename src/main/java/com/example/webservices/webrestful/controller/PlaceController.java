@@ -1,5 +1,8 @@
-package com.example.webservices.webrestful;
+package com.example.webservices.webrestful.controller;
 
+import com.example.webservices.webrestful.Place;
+import com.example.webservices.webrestful.PlacesHelper;
+import com.example.webservices.webrestful.repository.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
