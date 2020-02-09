@@ -58,6 +58,11 @@
 			<version>0.0.20131108.vaadin1</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.11.133</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -81,4 +86,13 @@
 					 allowed-origins="http://domain1.com" />
 
 	</mvc:cors>
+	<resources>
+		<resource>
+			<directory>src/main/resources</directory>
+			<filtering>true</filtering>
+			<includes>
+				<include>**/*.properties</include>
+			</includes>
+		</resource>
+	</resources>
 </project>
