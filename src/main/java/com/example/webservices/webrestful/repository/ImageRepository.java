@@ -1,14 +1,13 @@
 package com.example.webservices.webrestful.repository;
 
-import com.example.webservices.webrestful.Place;
+import com.example.webservices.webrestful.Image;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface PlaceRepository extends JpaRepository<Place, String> {
+public interface ImageRepository extends JpaRepository<Image, String> {
 
-    List<Place> findBynameContaining(String name, String nameAgain);
-
+    List<Image> findByBusinessID(String businessId);
 }
