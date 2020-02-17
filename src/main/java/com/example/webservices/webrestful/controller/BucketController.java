@@ -32,9 +32,9 @@ public class BucketController {
     }
 
     @PostMapping("/uploadFile")
-        public String uploadFile(@RequestPart(value = "file") MultipartFile file, @RequestParam String businessId, @RequestParam String userId) {
+        public String uploadFile(@RequestPart(value = "file") MultipartFile file, @RequestParam String placesId, @RequestParam String userId) {
         String url = this.amazonClient.uploadFile(file);
-        Image image =  imageRepository.save(new Image(url, businessId, userId));
+        Image image =  imageRepository.save(new Image(url, placesId, userId));
         if (url != null && image != null) {
             return "Image Uploaded!!!";
         } else {

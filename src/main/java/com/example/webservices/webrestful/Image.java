@@ -12,17 +12,19 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @Column(name="url")
     private String url;
-    private String businessID;
+    @Column(name="placesId")
+    private String placesId;
+    @Column(name="userId")
     private String userId;
 
     public Image() {
     }
 
-    public Image(String url, String businessID, String userId) {
+    public Image(String url, String placesId, String userId) {
         this.url = url;
-        this.businessID = businessID;
+        this.placesId = placesId;
         this.userId = userId;
     }
 
@@ -35,12 +37,12 @@ public class Image {
         this.userId = userId;
     }
 
-    public String getBusinessID() {
-        return businessID;
+    public String getPlacesId() {
+        return placesId;
     }
 
-    public void setBusinessID(String businessID) {
-        this.businessID = businessID;
+    public void setPlacesId(String placesId) {
+        this.placesId = placesId;
     }
 
     public String getUrl() {

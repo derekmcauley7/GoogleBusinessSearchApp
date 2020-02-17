@@ -26,17 +26,16 @@ public class ImageController {
         return imageRepository.findAll();
     }
 
-    @GetMapping("/allImages/{businessID}")
-    public List<Image> search(@PathVariable String businessID){
-        String businessId = businessID;
-        return imageRepository.findByBusinessID(businessId);
+    @GetMapping("/allImages/{placesId}")
+    public List<Image> search(@PathVariable String placesId){
+        return imageRepository.findByPlacesId(placesId);
     }
 
     @PostMapping("/image")
     public Image create(@RequestBody Map<String, String> body) {
         String url = body.get("url");
-        String businessID = body.get("businessID");
+        String placesId = body.get("placesId");
         String userId = body.get("userId");
-        return imageRepository.save(new Image(url, businessID, userId));
+        return imageRepository.save(new Image(url, placesId, userId));
     }
 }
