@@ -2,6 +2,7 @@ package com.example.webservices.webrestful;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,11 +11,15 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class PlacesHelper {
+
+
     public static ArrayList<String> getPlaces(String search, String county) {
+
+        String APIKY = "AIzaSyA9SHFcjQ-E84RfkY3AjKny5tjiII6Fm1o";
 
         SortResponse sortResponse = null;
         StringBuffer response = null;
-        final String APIKY = "";
+
         search = search.replaceAll("\\s+", "");
         String uri = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + search + "%20" + county +"&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&sensor=false&key=" + APIKY;
         try {
