@@ -1,9 +1,8 @@
 package com.example.webservices.webrestful.controller;
 
-import com.example.webservices.webrestful.User;
+import com.example.webservices.webrestful.bean.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

@@ -17,6 +17,8 @@ public class Review {
     private int id;
         private double overAllRating;
     private String userId;
+    private String userName;
+    private String date;
     @Column(name="suitableRamp")
     private String entrance;
     private String toilet;
@@ -35,12 +37,14 @@ public class Review {
 
     public Review() {  }
 
-    public Review(String placesId, String overAllRating, String userId, String entrance, String toilet, String cleanliness,
+    public Review(String placesId, String overAllRating, String userId, String userName, String date, String entrance, String toilet, String cleanliness,
                   String areAllAreasAccessible, String easeOfMovement, String seatingSuitability, String lift, String stairs,
                   String fullWheelchairAccessibleManual, String fullWheelchairAccessibleElectric, String keyRequiredFromStaff,
                   String serviceCounter, String tableService, String content) {
         this.setPlacesId(placesId);
         this.setUserId(userId);
+        this.setUserName(userName);
+        this.setDate(date);
         this.setEntrance(entrance);
         this.setToilet(toilet);
         this.setCleanliness(cleanliness);
@@ -230,6 +234,22 @@ public class Review {
 
         totalRating = totalRating /totalItems;
         return totalRating.toString();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     private class CalculateRatingForQuestions {

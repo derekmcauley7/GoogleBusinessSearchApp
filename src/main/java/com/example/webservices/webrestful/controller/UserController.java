@@ -1,5 +1,5 @@
 package com.example.webservices.webrestful.controller;
-import com.example.webservices.webrestful.User;
+import com.example.webservices.webrestful.bean.User;
 import com.example.webservices.webrestful.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

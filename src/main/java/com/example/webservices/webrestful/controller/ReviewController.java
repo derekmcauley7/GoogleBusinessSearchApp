@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,10 @@ public class ReviewController {
     @PostMapping("/review")
     public Review create(@RequestBody Map<String, String> body) {
         String placesId = body.get("placesId");
+        LocalDate currentDate = LocalDate.now();
+        String date = currentDate.toString();
         String userId = body.get("userId");
+        String userName = body.get("userName");
         String overAllRating = "0";
         String entrance = body.get("entrance");
         String toilet = body.get("toilet");
@@ -61,7 +65,7 @@ public class ReviewController {
         String tableService = body.get("tableService");
         String content = body.get("content");
 
-        return reviewRepository.save(new Review(placesId, overAllRating, userId, entrance, toilet, cleanliness, areAllAreasAccessible, easeOfMovement,
+        return reviewRepository.save(new Review(placesId, overAllRating, userId, userName,  date, entrance, toilet, cleanliness, areAllAreasAccessible, easeOfMovement,
                 seatingSuitability, lift, stairs, fullWheelchairAccessibleManual, fullWheelchairAccessibleElectric, keyRequiredFromStaff, serviceCounter,
                 tableService, content));
     }
