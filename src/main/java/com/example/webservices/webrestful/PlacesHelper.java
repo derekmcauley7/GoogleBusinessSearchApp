@@ -15,7 +15,7 @@ public class PlacesHelper {
 
     public static ArrayList<String> getPlaces(String search, String county) {
 
-        String APIKY = "AIzaSyA9SHFcjQ-E84RfkY3AjKny5tjiII6Fm1o";
+        String APIKY = "";
 
         SortResponse sortResponse = null;
         StringBuffer response = null;

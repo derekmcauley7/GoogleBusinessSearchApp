@@ -1,4 +1,4 @@
-package com.example.webservices.webrestful;
+package com.example.webservices.webrestful.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,6 +1,6 @@
 package com.example.webservices.webrestful.repository;
 
-import com.example.webservices.webrestful.Image;
+import com.example.webservices.webrestful.bean.Image;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
